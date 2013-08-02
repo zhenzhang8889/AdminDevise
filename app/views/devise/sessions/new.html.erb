@@ -1,0 +1,64 @@
+	<section id="message">
+		<div class="block-border"><div class="block-content no-title dark-bg">
+			<p class="mini-infos">For demo website, use <b>admin</b> / <b>admin</b></p>
+		</div></div>
+	</section>
+	
+	<section id="login-block">
+		<div class="block-border"><div class="block-content">
+			
+			<!--
+			IE7 compatibility: if you want to remove the <h1>, 
+			add style="zoom:1" to the above .block-content div
+			-->
+			<h1>Admin</h1>
+			<div class="block-header">Please login</div>
+				
+			<p class="message error no-margin" style="display: none;">Error message</p>
+			
+			<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+			<br/>
+			<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+			<br/>
+
+			<%= form_for("user", :url => user_session_path, :html => { 
+				:id => "login-form", :class => "form with-margin", :name => "login-form" }) do |f| %>
+
+				<!---
+				<input type="hidden" name="a" id="a" value="send">
+				-->
+
+				<p class="inline-small-label">
+				<label for="login"> <span class="big"> Username </span> </label>
+			  	<%= f.text_field :username,:id => "username", :name => "username", :class => "full-width"%>
+				</p>
+
+				<p class="inline-small-label">
+					<label for="pass"> <span class="big"> Password </span> </label>
+					<%= f.password_field :password, :id => "pass", :name => "pass", :class => "full-width" %>
+				</p>
+
+				<button type="button" class="float-right"> <%=link_to "Sign Up", new_user_registration_path,
+				:style => "color: white;" %> </button>
+
+				<%= f.button "Sign In", :class => "float-right" %>
+
+			<% end %>
+
+				<p class="input-height">
+					<input type="checkbox" name="keep-logged" id="keep-logged" value="1" class="mini-switch" checked="checked">
+					<label for="keep-logged" class="inline">Keep me logged in</label>
+				</p>
+			
+			<form class="form" id="password-recovery" method="post" action="">
+				<fieldset class="grey-bg no-margin collapse">
+					<legend><a href="#">Lost password?</a></legend>
+					<p class="input-with-button">
+						<label for="recovery-mail">Enter your e-mail address</label>
+						<input type="text" name="recovery-mail" id="recovery-mail" value="">
+						<button type="button">Send</button>
+					</p>
+				</fieldset>
+			</form>
+		</div></div>
+	</section>
